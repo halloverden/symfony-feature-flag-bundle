@@ -1,0 +1,25 @@
+{
+    "name": "halloverden/symfony-feature-flag-bundle",
+    "description": "Ability to enable and disable feature flags with commands",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "HalloVerden\\FeatureFlagBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tomme87",
+            "email": "tom.roar@halloverden.no"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4",
+        "symfony/dependency-injection": "^5.4",
+        "symfony/http-kernel": "^5.4",
+        "halloverden/symfony-entity-utils-bundle": "^3.0"
+    }
+}
