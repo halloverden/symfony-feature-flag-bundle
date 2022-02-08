@@ -1,0 +1,3 @@
+services:
+  HalloVerden\FeatureFlagBundle\EventListener\DiscriminatorMapSubscriber:
+    tags: [{name: doctrine.event_subscriber}]
