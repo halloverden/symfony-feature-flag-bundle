@@ -8,11 +8,11 @@ use Doctrine\ORM\Events;
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 
 /**
- * Class DiscriminatorMapSubscriber
+ * Class DiscriminatorMapListener
  *
- * @package HalloVerden\SymfonyFeatureFlagBundle\EventListener
+ * @package HalloVerden\FeatureFlagBundle\EventListener
  */
-class DiscriminatorMapSubscriber implements EventSubscriber {
+class DiscriminatorMapListener implements EventSubscriber {
 
   /**
    * @inheritDoc
