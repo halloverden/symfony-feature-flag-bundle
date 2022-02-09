@@ -1,3 +1,64 @@
 services:
-  HalloVerden\FeatureFlagBundle\EventListener\DiscriminatorMapSubscriber:
-    tags: [{name: doctrine.event_subscriber}]
+  hallo_verden_feature_flag.doctrine.subscriber.disriminator_map:
+    class: HalloVerden\FeatureFlagBundle\EventListener\DiscriminatorMapListener
+    tags:
+      - { name: doctrine.event_subscriber }
+
+  hallo_verden_feature_flag.doctrine.repository.feature_flag:
+    class: HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepository
+    arguments:
+      $registry: '@doctrine'
+
+  hallo_verden_feature_flag.factory:
+    class: HalloVerden\FeatureFlagBundle\Factory\FeatureFlagFactory
+    arguments:
+      $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+
+  hallo_verden_feature_flag.command.create:
+    class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagCreateCommand
+    arguments:
+      $featureFlagFactory: '@hallo_verden_feature_flag.factory'
+    tags:
+      - { name: console.command }
+
+  hallo_verden_feature_flag.command.update:
+    class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagUpdateCommand
+    arguments:
+      $featureFlagFactory: '@hallo_verden_feature_flag.factory'
+    tags:
+      - { name: console.command }
+
+  hallo_verden_feature_flag.command.delete:
+    class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagDeleteCommand
+    arguments:
+      $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+    tags:
+      - { name: console.command }
+
+  hallo_verden_feature_flag.command.list:
+    class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagListCommand
+    arguments:
+      $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+    tags:
+      - { name: console.command }
+
+  hallo_verden_feature_flag.command.activate:
+    class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagActivateCommand
+    arguments:
+      $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+    tags:
+      - { name: console.command }
+
+  hallo_verden_feature_flag.command.deactivate:
+    class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagDeactivateCommand
+    arguments:
+      $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+    tags:
+      - { name: console.command }
+
+  hallo_verden_feature_flag.service.feature-flag:
+    class: HalloVerden\FeatureFlagBundle\Services\FeatureFlagService
+    arguments:
+      $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+
+  HalloVerden\FeatureFlagBundle\Services\FeatureFlagServiceInterface: '@hallo_verden_feature_flag.service.feature-flag'
