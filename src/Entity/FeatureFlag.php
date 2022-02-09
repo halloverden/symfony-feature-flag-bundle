@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class FeatureFlag
  *
- * @package HalloVerden\SymfonyFeatureFlagBundle\Entity
+ * @package HalloVerden\FeatureFlagBundle\Entity
  *
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(columns={"type"})})
  * @ORM\Entity()
@@ -59,7 +59,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
   /**
    * @param string $name
    *
-   * @return FeatureFlag
+   * @return self
    */
   public function setName(string $name): self {
     $this->name = $name;
@@ -76,7 +76,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
   /**
    * @param string $description
    *
-   * @return FeatureFlag
+   * @return self
    */
   public function setDescription(string $description): self {
     $this->description = $description;
@@ -93,7 +93,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
   /**
    * @param bool $active
    *
-   * @return FeatureFlag
+   * @return self
    */
   public function setActive(bool $active): self {
     $this->active = $active;
