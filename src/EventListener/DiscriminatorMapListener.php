@@ -37,9 +37,7 @@ class DiscriminatorMapListener implements EventSubscriber {
 
     $map = [];
     foreach ($classMetadata->discriminatorMap as $class) {
-      if ($type = $this->getType($class)) {
-        $map[$type] = $class;
-      }
+      $map[$this->getType($class)] = $class;
     }
 
     $classMetadata->discriminatorMap = [];
