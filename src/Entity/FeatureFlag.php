@@ -45,6 +45,12 @@ abstract class FeatureFlag implements GenericEntityInterface {
   private bool $active = false;
 
   /**
+   * Use setters to build instance.
+   */
+  public final function __construct() {
+  }
+
+  /**
    * @return string
    */
   public static abstract function getType(): string;
