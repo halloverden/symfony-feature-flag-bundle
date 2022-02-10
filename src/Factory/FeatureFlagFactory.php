@@ -16,15 +16,12 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class FeatureFlagFactory implements FeatureFlagFactoryInterface {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
-  private FeatureFlagBuilderInterface $featureFlagBuilder;
 
   /**
    * @param FeatureFlagRepositoryInterface $featureFlagRepository
-   * @param FeatureFlagBuilderInterface    $featureFlagBuilder
    */
-  public function __construct(FeatureFlagRepositoryInterface $featureFlagRepository, FeatureFlagBuilderInterface $featureFlagBuilder) {
+  public function __construct(FeatureFlagRepositoryInterface $featureFlagRepository) {
     $this->featureFlagRepository = $featureFlagRepository;
-    $this->featureFlagBuilder = $featureFlagBuilder;
   }
 
   /**
@@ -41,7 +38,7 @@ class FeatureFlagFactory implements FeatureFlagFactoryInterface {
       // no-op
     }
 
-    return $this->featureFlagRepository->createFeatureFlag($this->featureFlagBuilder->buildFromConsole(new $class(), $input, $output));
+    return $this->featureFlagRepository->createFeatureFlag($class::createFromConsole($input, $output));
   }
 
   /**
@@ -49,7 +46,7 @@ class FeatureFlagFactory implements FeatureFlagFactoryInterface {
    */
   public function updateFromConsole(InputInterface $input, OutputInterface $output): FeatureFlag {
     return $this->featureFlagRepository->updateFeatureFlag(
-      $this->featureFlagBuilder->buildFromConsole($this->featureFlagRepository->getFeatureFlag($input->getArgument(FeatureFlag::PROPERTY_TYPE)), $input, $output)
+      $this->featureFlagRepository->getFeatureFlag($input->getArgument(FeatureFlag::PROPERTY_TYPE))->setFromConsole($input, $output)
     );
   }
 

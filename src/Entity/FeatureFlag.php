@@ -8,6 +8,7 @@ use HalloVerden\EntityUtilsBundle\Traits\DateTimestampableEntityTrait;
 use HalloVerden\EntityUtilsBundle\Traits\PrimaryAndNonPrimaryIdsTrait;
 use HalloVerden\FeatureFlagBundle\Exception\UnableToBuildFeatureFlagException;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
@@ -53,9 +54,20 @@ abstract class FeatureFlag implements GenericEntityInterface {
   private bool $active = false;
 
   /**
-   * Use setters to build instance.
+   * Use setters or createFromConsole to build instance.
    */
   public final function __construct() {
+  }
+
+  /**
+   * @param InputInterface  $input
+   * @param OutputInterface $output
+   *
+   * @return static
+   * @throws UnableToBuildFeatureFlagException
+   */
+  public static function createFromConsole(InputInterface $input, OutputInterface $output): self {
+    return (new static())->setFromConsole($input, $output);
   }
 
   /**
@@ -148,6 +160,20 @@ abstract class FeatureFlag implements GenericEntityInterface {
   public function setActive(bool $active): self {
     $this->active = $active;
     return $this;
+  }
+
+  /**
+   * @param InputInterface $input
+   * @param SymfonyStyle   $io
+   *
+   * @return $this
+   * @throws UnableToBuildFeatureFlagException
+   */
+  public function setFromConsole(InputInterface $input, OutputInterface $output): self {
+    $io = new SymfonyStyle($input, $output);
+
+    return $this->setNameFromConsole($input, $io)
+      ->setDescriptionFromConsole($input, $io);
   }
 
   /**

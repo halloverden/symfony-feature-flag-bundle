@@ -15,7 +15,7 @@ interface FeatureFlagRepositoryInterface {
   /**
    * @param string $typeOrClass
    *
-   * @return string
+   * @return class-string<FeatureFlag>
    */
   public function getClass(string $typeOrClass): string;
 
