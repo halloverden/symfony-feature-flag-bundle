@@ -57,7 +57,7 @@ class FeatureFlagCreateCommand extends Command {
       return Command::FAILURE;
     }
 
-    $io->success(\sprintf('Feature flag %s created', $featureFlag::getType()));
+    $io->success(\sprintf('Feature flag %s created, use "%s %s" to enable', $featureFlag::getType(), FeatureFlagActivateCommand::getDefaultName(), $featureFlag::getType()));
 
     return Command::SUCCESS;
   }
