@@ -66,7 +66,7 @@ use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
  */
 class TestFeatureFlag extends FeatureFlag {
 
-  /* If you add additonal properties, override FeatureFlagFactory */
+  /* If you add additonal properties, override FeatureFlagBuilder */
 
   /**
    * @inheritDoc

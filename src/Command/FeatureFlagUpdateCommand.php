@@ -2,11 +2,14 @@
 
 namespace HalloVerden\FeatureFlagBundle\Command;
 
+use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Exception\UnableToBuildFeatureFlagException;
 use HalloVerden\FeatureFlagBundle\Factory\FeatureFlagFactoryInterface;
 use HalloVerden\HttpExceptions\NotFoundException;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -34,7 +37,11 @@ class FeatureFlagUpdateCommand extends Command {
    * @inheritDoc
    */
   protected function configure() {
-    $this->setDefinition($this->featureFlagFactory->getDefinition());
+    $this->setDefinition([
+      new InputArgument(FeatureFlagFactoryInterface::INPUT_ARGUMENT_TYPE, InputArgument::REQUIRED, 'Type of feature flag'),
+      new InputOption(FeatureFlag::PROPERTY_NAME, null, InputOption::VALUE_REQUIRED, 'Name of the feature flag'),
+      new InputOption(FeatureFlag::PROPERTY_DESCRIPTION, null, InputOption::VALUE_REQUIRED, 'Description of the feature flag'),
+    ]);
   }
 
   /**

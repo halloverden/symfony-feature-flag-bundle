@@ -9,10 +9,16 @@ services:
     arguments:
       $registry: '@doctrine'
 
+  hallo_verden_feature_flag.builder:
+    class: HalloVerden\FeatureFlagBundle\Factory\FeatureFlagBuilder
+
   hallo_verden_feature_flag.factory:
     class: HalloVerden\FeatureFlagBundle\Factory\FeatureFlagFactory
     arguments:
       $featureFlagRepository: '@hallo_verden_feature_flag.doctrine.repository.feature_flag'
+      $featureFlagBuilder: '@hallo_verden_feature_flag.builder'
+    tags:
+      - { name: hallo_verden_feature_flag.factory, priority: -1024 }
 
   hallo_verden_feature_flag.command.create:
     class: HalloVerden\FeatureFlagBundle\Command\FeatureFlagCreateCommand

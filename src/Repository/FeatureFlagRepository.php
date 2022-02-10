@@ -9,7 +9,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
-use HalloVerden\FeatureFlagBundle\Exception\FeatureFlagTypeNotFoundException;
+use HalloVerden\FeatureFlagBundle\Exception\FeatureFlagClassNotFoundException;
 use HalloVerden\HttpExceptions\NoContentException;
 use HalloVerden\HttpExceptions\NotFoundException;
 
@@ -31,11 +31,15 @@ class FeatureFlagRepository extends ServiceEntityRepository implements FeatureFl
   /**
    * @inheritDoc
    */
-  public function getClass(string $type): string {
-    $class = $this->getClassMetadata()->discriminatorMap[$type] ?? null;
+  public function getClass(string $typeOrClass): string {
+    if (\is_subclass_of($typeOrClass, FeatureFlag::class, true)) {
+      return $typeOrClass;
+    }
+
+    $class = $this->getClassMetadata()->discriminatorMap[$typeOrClass] ?? null;
 
     if (null === $class) {
-      throw new FeatureFlagTypeNotFoundException($type);
+      throw new FeatureFlagClassNotFoundException($typeOrClass);
     }
 
     return $class;
@@ -61,13 +65,7 @@ class FeatureFlagRepository extends ServiceEntityRepository implements FeatureFl
   public function getFeatureFlag(string $typeOrClass): FeatureFlag {
     $qb = $this->createQueryBuilder('ff');
 
-    if (\is_subclass_of($typeOrClass, FeatureFlag::class, true)) {
-      $class = $typeOrClass;
-    } else {
-      $class = $this->getClass($typeOrClass);
-    }
-
-    $qb->andWhere($qb->expr()->isInstanceOf('ff', $class));
+    $qb->andWhere($qb->expr()->isInstanceOf('ff', $this->getClass($typeOrClass)));
 
     try {
       return $qb->getQuery()->getSingleResult();

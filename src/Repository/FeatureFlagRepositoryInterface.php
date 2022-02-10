@@ -13,11 +13,11 @@ use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 interface FeatureFlagRepositoryInterface {
 
   /**
-   * @param string $type
+   * @param string $typeOrClass
    *
    * @return string
    */
-  public function getClass(string $type): string;
+  public function getClass(string $typeOrClass): string;
 
   /**
    * @return Collection<FeatureFlag>|FeatureFlag[]

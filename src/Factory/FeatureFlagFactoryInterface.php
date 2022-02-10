@@ -5,18 +5,16 @@ namespace HalloVerden\FeatureFlagBundle\Factory;
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Exception\FeatureFlagAlreadyExistException;
 use HalloVerden\FeatureFlagBundle\Exception\UnableToBuildFeatureFlagException;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Interface FeatureFlagFactoryManagerInterface
+ *
+ * @package HalloVerden\FeatureFlagBundle\Factory
+ */
 interface FeatureFlagFactoryInterface {
-
-  /**
-   * @return InputDefinition|InputOption[]|InputArgument[]
-   */
-  public function getDefinition();
+  const INPUT_ARGUMENT_TYPE = 'type';
 
   /**
    * @param InputInterface  $input
