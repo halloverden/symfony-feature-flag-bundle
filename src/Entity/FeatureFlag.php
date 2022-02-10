@@ -26,6 +26,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
   use PrimaryAndNonPrimaryIdsTrait;
   use DateTimestampableEntityTrait;
 
+  const PROPERTY_TYPE = 'type';
   const PROPERTY_NAME = 'name';
   const PROPERTY_DESCRIPTION = 'description';
   const PROPERTY_ACTIVE = 'active';
@@ -154,6 +155,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
    */
   public function toArray(): array {
     return [
+      self::PROPERTY_TYPE => $this::getType(),
       self::PROPERTY_NAME => $this->getName(),
       self::PROPERTY_DESCRIPTION => $this->getDescription(),
       self::PROPERTY_ACTIVE => $this->isActive() ? 'yes' : 'no',
