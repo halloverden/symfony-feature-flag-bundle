@@ -28,6 +28,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
 
   const PROPERTY_NAME = 'name';
   const PROPERTY_DESCRIPTION = 'description';
+  const PROPERTY_ACTIVE = 'active';
 
   /**
    * @var string
@@ -146,6 +147,17 @@ abstract class FeatureFlag implements GenericEntityInterface {
   public function setActive(bool $active): self {
     $this->active = $active;
     return $this;
+  }
+
+  /**
+   * @return array
+   */
+  public function toArray(): array {
+    return [
+      self::PROPERTY_NAME => $this->getName(),
+      self::PROPERTY_DESCRIPTION => $this->getDescription(),
+      self::PROPERTY_ACTIVE => $this->isActive() ? 'yes' : 'no',
+    ];
   }
 
   /**

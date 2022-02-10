@@ -52,12 +52,20 @@ class FeatureFlagListCommand extends Command {
       return Command::SUCCESS;
     }
 
-    $table = $io->createTable()->setHeaders(['type', 'name', 'description', 'active']);
+    $headers = [];
+    $rows = [];
+
     foreach ($featureFlags as $featureFlag) {
-      $table->addRow([$featureFlag::getType(), $featureFlag->getName(), $featureFlag->getDescription(), $featureFlag->isActive() ? 'yes' : 'no']);
+      $featureFlagAsArray = $featureFlag->toArray();
+      $headers = \array_merge($headers, \array_keys($featureFlagAsArray));
+      $rows[] = \array_values($featureFlagAsArray);
     }
-    $table->setHorizontal($input->getOption('horizontal'));
-    $table->render();
+
+    $io->createTable()
+      ->setHeaders($headers)
+      ->setRows($rows)
+      ->setHorizontal($input->getOption('horizontal'))
+      ->render();
     $io->newLine();
 
     return Command::SUCCESS;
