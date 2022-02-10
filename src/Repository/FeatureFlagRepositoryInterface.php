@@ -22,7 +22,7 @@ interface FeatureFlagRepositoryInterface {
   /**
    * @return Collection<FeatureFlag>|FeatureFlag[]
    */
-  public function getAll(): Collection;
+  public function getFeatureFlags(): Collection;
 
   /**
    * @param string $typeOrClass

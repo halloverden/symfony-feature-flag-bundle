@@ -46,7 +46,7 @@ class FeatureFlagListCommand extends Command {
     $io = new SymfonyStyle($input, $output);
 
     try {
-      $featureFlags = $this->featureFlagRepository->getAll();
+      $featureFlags = $this->featureFlagRepository->getFeatureFlags();
     } catch (NoContentException $exception) {
       $io->warning('No feature flags created');
       return Command::SUCCESS;

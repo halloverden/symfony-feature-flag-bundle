@@ -48,7 +48,7 @@ class FeatureFlagRepository extends ServiceEntityRepository implements FeatureFl
   /**
    * @inheritDoc
    */
-  public function getAll(): Collection {
+  public function getFeatureFlags(): Collection {
     $featureFlags = new ArrayCollection($this->findAll());
 
     if ($featureFlags->isEmpty()) {
