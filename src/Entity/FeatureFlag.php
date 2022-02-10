@@ -128,7 +128,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
       throw new UnableToBuildFeatureFlagException('Missing description');
     }
 
-    return $this->setName($description);
+    return $this->setDescription($description);
   }
 
   /**
