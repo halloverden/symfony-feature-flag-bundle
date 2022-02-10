@@ -86,7 +86,8 @@ abstract class FeatureFlag implements GenericEntityInterface {
    * @throws UnableToBuildFeatureFlagException
    */
   public function setNameFromConsole(InputInterface $input, SymfonyStyle $io): self {
-    $name = $input->getOption(self::PROPERTY_NAME) ?: $io->ask('Name', $this->name ?? null, [static::class, 'validateNotNull']);
+    $name = $input->getOption(self::PROPERTY_NAME)
+      ?: $io->ask('Name', $this->name ?? null, $this->getValidateNotNullCallable());
 
     if (null === $name) {
       throw new UnableToBuildFeatureFlagException('Missing name');
@@ -117,9 +118,11 @@ abstract class FeatureFlag implements GenericEntityInterface {
    * @param SymfonyStyle   $io
    *
    * @return $this
+   * @throws UnableToBuildFeatureFlagException
    */
   public function setDescriptionFromConsole(InputInterface $input, SymfonyStyle $io): self {
-    $description = $input->getOption(self::PROPERTY_DESCRIPTION) ?: $io->ask('Description', $this->name ?? null, [static::class, 'validateNotNull']);
+    $description = $input->getOption(self::PROPERTY_DESCRIPTION)
+      ?: $io->ask('Description', $this->description ?? null, $this->getValidateNotNullCallable());
 
     if (null === $description) {
       throw new UnableToBuildFeatureFlagException('Missing description');
@@ -146,16 +149,15 @@ abstract class FeatureFlag implements GenericEntityInterface {
   }
 
   /**
-   * @param $value
-   *
-   * @return mixed
-   * @throws \Exception
+   * @return callable
    */
-  public final function validateNotNull($value) {
-    if (null === $value) {
-      throw new \Exception('Value can not be null');
-    }
+  protected final function getValidateNotNullCallable(): callable {
+    return function ($value) {
+      if (null === $value) {
+        throw new \Exception('Value can not be null');
+      }
 
-    return $value;
+      return $value;
+    };
   }
 }
