@@ -2,6 +2,7 @@
 
 namespace HalloVerden\FeatureFlagBundle\Command;
 
+use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -34,7 +35,7 @@ class FeatureFlagActivateCommand extends Command {
    */
   protected function configure() {
     $this->setDefinition([
-      new InputArgument('type', InputArgument::REQUIRED, 'feature flag type'),
+      new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'feature flag type'),
     ]);
   }
 
@@ -45,7 +46,7 @@ class FeatureFlagActivateCommand extends Command {
     $io = new SymfonyStyle($input, $output);
 
     $featureFlag = $this->featureFlagRepository->updateFeatureFlag(
-      $this->featureFlagRepository->getFeatureFlag($input->getArgument('type'))->setActive(true)
+      $this->featureFlagRepository->getFeatureFlag($input->getArgument(FeatureFlag::PROPERTY_TYPE))->setActive(true)
     );
 
     $io->success(\sprintf('feature flag %s activated', $featureFlag::getType()));

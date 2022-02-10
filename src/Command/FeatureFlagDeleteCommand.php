@@ -2,6 +2,7 @@
 
 namespace HalloVerden\FeatureFlagBundle\Command;
 
+use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepositoryInterface;
 use HalloVerden\HttpExceptions\NotFoundException;
 use Symfony\Component\Console\Command\Command;
@@ -35,7 +36,7 @@ class FeatureFlagDeleteCommand extends Command {
    */
   protected function configure() {
     $this->setDefinition([
-      new InputArgument('type', InputArgument::REQUIRED, 'Type of feature flag'),
+      new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'Type of feature flag'),
     ]);
   }
 
@@ -46,7 +47,7 @@ class FeatureFlagDeleteCommand extends Command {
     $io = new SymfonyStyle($input, $output);
 
     try {
-      $featureFlag = $this->featureFlagRepository->deleteFeatureFlag($this->featureFlagRepository->getFeatureFlag($input->getArgument('type')));
+      $featureFlag = $this->featureFlagRepository->deleteFeatureFlag($this->featureFlagRepository->getFeatureFlag($input->getArgument(FeatureFlag::PROPERTY_TYPE)));
     } catch (NotFoundException $exception) {
       $io->error(\sprintf('Feature flag %s not found', $exception->getData()['subject'] ?? ''));
       return Command::FAILURE;

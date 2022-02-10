@@ -86,7 +86,7 @@ class FeatureFlagListCommand extends Command {
    * @return Collection<FeatureFlag>|FeatureFlag[]
    */
   private function getFeatureFlags(InputInterface $input): Collection {
-    if ($type = $input->getArgument('type')) {
+    if ($type = $input->getArgument(FeatureFlag::PROPERTY_TYPE)) {
       return new ArrayCollection([$this->featureFlagRepository->getFeatureFlag($type)]);
     }
 
