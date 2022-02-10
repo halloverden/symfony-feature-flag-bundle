@@ -3,6 +3,7 @@
 namespace HalloVerden\FeatureFlagBundle\Command;
 
 use HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepositoryInterface;
+use HalloVerden\HttpExceptions\NoContentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -44,7 +45,12 @@ class FeatureFlagListCommand extends Command {
   protected function execute(InputInterface $input, OutputInterface $output): int {
     $io = new SymfonyStyle($input, $output);
 
-    $featureFlags = $this->featureFlagRepository->getAll();
+    try {
+      $featureFlags = $this->featureFlagRepository->getAll();
+    } catch (NoContentException $exception) {
+      $io->warning('No feature flags created');
+      return Command::SUCCESS;
+    }
 
     $table = $io->createTable()->setHeaders(['type', 'name', 'description', 'active']);
     foreach ($featureFlags as $featureFlag) {
