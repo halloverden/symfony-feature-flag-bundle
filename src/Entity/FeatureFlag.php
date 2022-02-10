@@ -151,7 +151,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
    * @return mixed
    * @throws \Exception
    */
-  protected final function validateNotNull($value) {
+  public final function validateNotNull($value) {
     if (null === $value) {
       throw new \Exception('Value can not be null');
     }
