@@ -14,7 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @package HalloVerden\FeatureFlagBundle\Factory
  */
 interface FeatureFlagFactoryInterface {
-  const INPUT_ARGUMENT_TYPE = 'type';
 
   /**
    * @param InputInterface  $input

@@ -38,7 +38,7 @@ class FeatureFlagCreateCommand extends Command {
    */
   protected function configure() {
     $this->setDefinition([
-      new InputArgument(FeatureFlagFactoryInterface::INPUT_ARGUMENT_TYPE, InputArgument::REQUIRED, 'Type of feature flag'),
+      new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'Type of feature flag'),
       new InputOption(FeatureFlag::PROPERTY_NAME, null, InputOption::VALUE_REQUIRED, 'Name of the feature flag'),
       new InputOption(FeatureFlag::PROPERTY_DESCRIPTION, null, InputOption::VALUE_REQUIRED, 'Description of the feature flag'),
     ]);

@@ -31,7 +31,7 @@ class FeatureFlagFactory implements FeatureFlagFactoryInterface {
    * @inheritDoc
    */
   public function createFromConsole(InputInterface $input, OutputInterface $output): FeatureFlag {
-    $typeOrClass = $input->getArgument(self::INPUT_ARGUMENT_TYPE);
+    $typeOrClass = $input->getArgument(FeatureFlag::PROPERTY_TYPE);
     $class = $this->featureFlagRepository->getClass($typeOrClass);
 
     try {
@@ -49,7 +49,7 @@ class FeatureFlagFactory implements FeatureFlagFactoryInterface {
    */
   public function updateFromConsole(InputInterface $input, OutputInterface $output): FeatureFlag {
     return $this->featureFlagRepository->updateFeatureFlag(
-      $this->featureFlagBuilder->buildFromConsole($this->featureFlagRepository->getFeatureFlag($input->getArgument(self::INPUT_ARGUMENT_TYPE)), $input, $output)
+      $this->featureFlagBuilder->buildFromConsole($this->featureFlagRepository->getFeatureFlag($input->getArgument(FeatureFlag::PROPERTY_TYPE)), $input, $output)
     );
   }
 
