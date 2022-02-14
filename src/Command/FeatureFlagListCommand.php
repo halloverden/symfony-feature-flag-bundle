@@ -54,7 +54,7 @@ class FeatureFlagListCommand extends Command {
     try {
       $featureFlags = $this->getFeatureFlags($input);
     } catch (NoContentException $exception) {
-      $io->warning('No feature flags created');
+      $io->warning('No feature flags exist');
       return Command::SUCCESS;
     } catch (NotFoundException $exception) {
       $io->error(\sprintf('Feature flag of type %s not found', $exception->getData()['subject'] ?? ''));
