@@ -117,7 +117,7 @@ class SomeService {
   
   public function test(): void {
     if (!$this->featureFlagService->isActive(TestFeatureFlag::class)) {
-      return; // or throw and exception
+      return; // or throw an exception
     }
     
     // Do the thing that requires this feature to be active.
