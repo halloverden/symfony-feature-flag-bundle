@@ -47,7 +47,7 @@ return [
 Usage
 -----
 
-#### Create a entity representing your feature.
+#### Create an entity representing your feature.
 
 ```php
 <?php
