@@ -56,7 +56,7 @@ abstract class FeatureFlag implements GenericEntityInterface {
   /**
    * Use setters or createFromConsole to build instance.
    */
-  public final function __construct() {
+  public function __construct() {
   }
 
   /**
