@@ -5,21 +5,15 @@ namespace HalloVerden\FeatureFlagBundle\Command;
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepositoryInterface;
 use HalloVerden\HttpExceptions\NotFoundException;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-/**
- * Class FeatureFlagDeleteCommand
- *
- * @package HalloVerden\FeatureFlagBundle\Command
- */
+#[AsCommand(name: 'feature-flag:delete', description: 'delete feature flag')]
 class FeatureFlagDeleteCommand extends Command {
-  protected static $defaultName = 'feature-flag:delete';
-  protected static $defaultDescription = 'delete feature flag';
-
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**

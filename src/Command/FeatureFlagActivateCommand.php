@@ -4,21 +4,15 @@ namespace HalloVerden\FeatureFlagBundle\Command;
 
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepositoryInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-/**
- * Class FeatureFlagActivateCommand
- *
- * @package HalloVerden\FeatureFlagBundle\Command
- */
+#[AsCommand(name: 'feature-flag:activate', description: 'Activate feature flag')]
 class FeatureFlagActivateCommand extends Command {
-  protected static $defaultName = 'feature-flag:activate';
-  protected static $defaultDescription = 'Activate feature flag';
-
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**
