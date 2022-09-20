@@ -6,6 +6,7 @@ use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Exception\UnableToBuildFeatureFlagException;
 use HalloVerden\FeatureFlagBundle\Factory\FeatureFlagFactoryInterface;
 use HalloVerden\HttpExceptions\NotFoundException;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,15 +14,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-/**
- * Class FeatureFlagUpdateCommand
- *
- * @package HalloVerden\FeatureFlagBundle\Command
- */
+#[AsCommand(name: 'feature-flag:update', description: 'update feature flag')]
 class FeatureFlagUpdateCommand extends Command {
-  protected static $defaultName = 'feature-flag:update';
-  protected static $defaultDescription = 'update feature flag';
-
   private FeatureFlagFactoryInterface $featureFlagFactory;
 
   /**
