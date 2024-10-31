@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:list', description: 'delete feature flag')]
-class FeatureFlagListCommand extends Command {
+final class FeatureFlagListCommand extends Command {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**

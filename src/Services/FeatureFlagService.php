@@ -6,19 +6,13 @@ use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 use HalloVerden\FeatureFlagBundle\Repository\FeatureFlagRepositoryInterface;
 use HalloVerden\HttpExceptions\NotFoundException;
 
-/**
- * Class FeatureFlagService
- *
- * @package HalloVerden\FeatureFlagBundle\Services
- */
-class FeatureFlagService implements FeatureFlagServiceInterface {
-  private FeatureFlagRepositoryInterface $featureFlagRepository;
+
+final readonly class FeatureFlagService implements FeatureFlagServiceInterface {
 
   /**
-   * @param FeatureFlagRepositoryInterface $featureFlagRepository
+   * FeatureFlagService constructor.
    */
-  public function __construct(FeatureFlagRepositoryInterface $featureFlagRepository) {
-    $this->featureFlagRepository = $featureFlagRepository;
+  public function __construct(private FeatureFlagRepositoryInterface $featureFlagRepository) {
   }
 
   /**
@@ -27,7 +21,7 @@ class FeatureFlagService implements FeatureFlagServiceInterface {
   public function isActive(string $featureFlagClassOrType): bool {
     try {
       return $this->getFeatureFlag($featureFlagClassOrType)->isActive();
-    } catch (NotFoundException $exception) {
+    } catch (NotFoundException) {
       return false;
     }
   }

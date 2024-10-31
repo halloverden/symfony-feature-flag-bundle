@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:deactivate', description: 'Deactivate feature flag')]
-class FeatureFlagDeactivateCommand extends Command {
+final class FeatureFlagDeactivateCommand extends Command {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**

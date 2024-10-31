@@ -9,12 +9,8 @@ use HalloVerden\HttpExceptions\NotFoundException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-/**
- * Class FeatureFlagFactoryManager
- *
- * @package HalloVerden\FeatureFlagBundle\Factory
- */
-class FeatureFlagFactory implements FeatureFlagFactoryInterface {
+
+final class FeatureFlagFactory implements FeatureFlagFactoryInterface {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**

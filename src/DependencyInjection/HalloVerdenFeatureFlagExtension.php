@@ -7,12 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-/**
- * Class HalloVerdenFeatureFlagExtension
- *
- * @package HalloVerden\FeatureFlagBundle\DependencyInjection
- */
-class HalloVerdenFeatureFlagExtension extends Extension {
+
+final class HalloVerdenFeatureFlagExtension extends Extension {
 
   /**
    * @inheritDoc

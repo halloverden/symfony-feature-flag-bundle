@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:delete', description: 'delete feature flag')]
-class FeatureFlagDeleteCommand extends Command {
+final class FeatureFlagDeleteCommand extends Command {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**

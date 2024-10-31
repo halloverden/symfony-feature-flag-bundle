@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:create', description: 'Create feature flag')]
-class FeatureFlagCreateCommand extends Command {
+final class FeatureFlagCreateCommand extends Command {
   private FeatureFlagFactoryInterface $featureFlagFactory;
 
   /**

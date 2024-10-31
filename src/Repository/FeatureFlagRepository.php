@@ -19,7 +19,7 @@ use HalloVerden\HttpExceptions\NotFoundException;
  * @method FeatureFlag[]    findAll()
  * @method FeatureFlag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FeatureFlagRepository extends ServiceEntityRepository implements FeatureFlagRepositoryInterface {
+final class FeatureFlagRepository extends ServiceEntityRepository implements FeatureFlagRepositoryInterface {
 
   /**
    * @param ManagerRegistry $registry

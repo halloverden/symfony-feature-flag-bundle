@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:update', description: 'update feature flag')]
-class FeatureFlagUpdateCommand extends Command {
+final class FeatureFlagUpdateCommand extends Command {
   private FeatureFlagFactoryInterface $featureFlagFactory;
 
   /**
