@@ -32,7 +32,7 @@ class FeatureFlagListCommand extends Command {
   /**
    * @inheritDoc
    */
-  protected function configure() {
+  protected function configure(): void {
     $this->setDefinition([
       new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::OPTIONAL, 'type of feature flag'),
       new InputOption('horizontal', null, InputOption::VALUE_NONE, 'Outputs table horizontally')

@@ -30,7 +30,7 @@ class FeatureFlagCreateCommand extends Command {
   /**
    * @inheritDoc
    */
-  protected function configure() {
+  protected function configure(): void {
     $this->setDefinition([
       new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'Type of feature flag'),
       new InputOption(FeatureFlag::PROPERTY_NAME, null, InputOption::VALUE_REQUIRED, 'Name of the feature flag'),

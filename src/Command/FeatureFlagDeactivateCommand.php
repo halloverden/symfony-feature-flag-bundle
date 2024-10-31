@@ -27,7 +27,7 @@ class FeatureFlagDeactivateCommand extends Command {
   /**
    * @inheritDoc
    */
-  protected function configure() {
+  protected function configure(): void {
     $this->setDefinition([
       new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'feature flag type'),
     ]);
