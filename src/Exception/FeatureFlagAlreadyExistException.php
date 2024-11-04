@@ -2,12 +2,8 @@
 
 namespace HalloVerden\FeatureFlagBundle\Exception;
 
-/**
- * Class FeatureFlagAlreadyExistException
- *
- * @package HalloVerden\FeatureFlagBundle\Exception
- */
-class FeatureFlagAlreadyExistException extends \Exception {
+
+final class FeatureFlagAlreadyExistException extends \Exception {
 
   /**
    * @inheritDoc

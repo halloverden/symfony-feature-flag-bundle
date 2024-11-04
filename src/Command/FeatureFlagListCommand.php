@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:list', description: 'delete feature flag')]
-class FeatureFlagListCommand extends Command {
+final class FeatureFlagListCommand extends Command {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**
@@ -32,7 +32,7 @@ class FeatureFlagListCommand extends Command {
   /**
    * @inheritDoc
    */
-  protected function configure() {
+  protected function configure(): void {
     $this->setDefinition([
       new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::OPTIONAL, 'type of feature flag'),
       new InputOption('horizontal', null, InputOption::VALUE_NONE, 'Outputs table horizontally')

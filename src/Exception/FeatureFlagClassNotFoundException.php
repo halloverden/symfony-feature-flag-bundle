@@ -2,12 +2,8 @@
 
 namespace HalloVerden\FeatureFlagBundle\Exception;
 
-/**
- * Class FeatureFlagTypeNotFoundException
- *
- * @package HalloVerden\FeatureFlagBundle\Exception
- */
-class FeatureFlagClassNotFoundException extends \RuntimeException {
+
+final class FeatureFlagClassNotFoundException extends \RuntimeException {
 
   /**
    * @inheritDoc

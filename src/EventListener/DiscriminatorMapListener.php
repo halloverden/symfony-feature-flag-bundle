@@ -7,12 +7,8 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 
-/**
- * Class DiscriminatorMapListener
- *
- * @package HalloVerden\FeatureFlagBundle\EventListener
- */
-class DiscriminatorMapListener implements EventSubscriber {
+
+final class DiscriminatorMapListener implements EventSubscriber {
 
   /**
    * @inheritDoc

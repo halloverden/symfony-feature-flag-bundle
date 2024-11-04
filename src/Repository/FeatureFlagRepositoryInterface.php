@@ -5,11 +5,7 @@ namespace HalloVerden\FeatureFlagBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use HalloVerden\FeatureFlagBundle\Entity\FeatureFlag;
 
-/**
- * Interface FeatureFlagRepositoryInterface
- *
- * @package HalloVerden\FeatureFlagBundle\Repository
- */
+
 interface FeatureFlagRepositoryInterface {
 
   /**

@@ -10,19 +10,13 @@ use HalloVerden\FeatureFlagBundle\Exception\UnableToBuildFeatureFlagException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation as Serializer;
 
-/**
- * Class FeatureFlag
- *
- * @package HalloVerden\FeatureFlagBundle\Entity
- *
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(columns={"type"})})
- * @ORM\Entity()
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="type", type="string")
- */
+
+#[ORM\Table]
+#[ORM\UniqueConstraint(columns: ['type'])]
+#[ORM\Entity]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
 abstract class FeatureFlag implements GenericEntityInterface {
   use PrimaryAndNonPrimaryIdsTrait;
   use DateTimestampableEntityTrait;
@@ -32,25 +26,13 @@ abstract class FeatureFlag implements GenericEntityInterface {
   const PROPERTY_DESCRIPTION = 'description';
   const PROPERTY_ACTIVE = 'active';
 
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="name", type="string", nullable=false)
-   */
+  #[ORM\Column(name: 'name', type: 'string', nullable: false)]
   private string $name;
 
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="description", type="text", nullable=false)
-   */
+  #[ORM\Column(name: 'description', type: 'text', nullable: false)]
   private string $description;
 
-  /**
-   * @var bool
-   *
-   * @ORM\Column(name="active", type="boolean", nullable=false)
-   */
+  #[ORM\Column(name: 'active', type: 'boolean', nullable: false)]
   private bool $active = false;
 
   /**

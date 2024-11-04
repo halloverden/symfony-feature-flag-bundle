@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:update', description: 'update feature flag')]
-class FeatureFlagUpdateCommand extends Command {
+final class FeatureFlagUpdateCommand extends Command {
   private FeatureFlagFactoryInterface $featureFlagFactory;
 
   /**
@@ -30,7 +30,7 @@ class FeatureFlagUpdateCommand extends Command {
   /**
    * @inheritDoc
    */
-  protected function configure() {
+  protected function configure(): void {
     $this->setDefinition([
       new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'Type of feature flag'),
       new InputOption(FeatureFlag::PROPERTY_NAME, null, InputOption::VALUE_REQUIRED, 'Name of the feature flag'),

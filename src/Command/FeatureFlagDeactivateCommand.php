@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(name: 'feature-flag:deactivate', description: 'Deactivate feature flag')]
-class FeatureFlagDeactivateCommand extends Command {
+final class FeatureFlagDeactivateCommand extends Command {
   private FeatureFlagRepositoryInterface $featureFlagRepository;
 
   /**
@@ -27,7 +27,7 @@ class FeatureFlagDeactivateCommand extends Command {
   /**
    * @inheritDoc
    */
-  protected function configure() {
+  protected function configure(): void {
     $this->setDefinition([
       new InputArgument(FeatureFlag::PROPERTY_TYPE, InputArgument::REQUIRED, 'feature flag type'),
     ]);
